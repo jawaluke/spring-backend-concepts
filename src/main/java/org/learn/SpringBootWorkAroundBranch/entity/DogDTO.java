@@ -1,12 +1,17 @@
-package org.learn.SpringBootWorkAroundBranch.model;
+package org.learn.SpringBootWorkAroundBranch.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.learn.SpringBootWorkAroundBranch.model.DogBreed;
+import org.learn.SpringBootWorkAroundBranch.model.Gender;
 
-@Table(name = "Dog", schema = "DogHouse")
+import java.util.List;
+import java.util.Set;
+
+@Table(name = "Dog", schema = "Dog_House")
 @Entity
 @Data
 @Builder
@@ -28,4 +33,7 @@ public class DogDTO {
     @Column(name = "DogGender")
     @Enumerated(value = EnumType.STRING)
     private Gender gender;
+
+    @OneToMany(mappedBy = "dogId", cascade = CascadeType.ALL)
+    private Set<OwnerDTO> ownerDTOList;
 }

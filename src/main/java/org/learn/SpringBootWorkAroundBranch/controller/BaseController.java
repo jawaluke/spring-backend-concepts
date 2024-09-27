@@ -1,10 +1,10 @@
 package org.learn.SpringBootWorkAroundBranch.controller;
 
+import org.learn.SpringBootWorkAroundBranch.entity.DogDTO;
+import org.learn.SpringBootWorkAroundBranch.entity.OwnerDTO;
 import org.learn.SpringBootWorkAroundBranch.model.Dog;
-import org.learn.SpringBootWorkAroundBranch.model.DogDTO;
 import org.learn.SpringBootWorkAroundBranch.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,6 +29,16 @@ public class BaseController {
     @PostMapping("/dum/{n}")
     public DogDTO saveDummies(@RequestBody Dog dog, @PathVariable("n") int n) {
         return baseService.saveDog(dog, n);
+    }
+
+    @GetMapping("/dum/dog/{id}")
+    public List<DogDTO> getDog(@PathVariable("id") int id) {
+        return baseService.getDog(id);
+    }
+
+    @GetMapping("/dum/owner/{id}")
+    public List<OwnerDTO> getOwner(@PathVariable("id") int id) {
+        return baseService.getOwner(id);
     }
 
 }
