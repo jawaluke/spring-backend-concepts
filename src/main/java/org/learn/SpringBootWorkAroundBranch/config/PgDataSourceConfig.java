@@ -14,8 +14,13 @@ public class PgDataSourceConfig {
     @ConfigurationProperties(
             prefix = "spring.datasource.pg"
     )
-    public DataSource getDataSource() {
-        return new DataSourceProperties().initializeDataSourceBuilder().build();
+    public DataSourceProperties getDataSourceProperty() {
+        return new DataSourceProperties();
+    }
+
+    @Bean
+    public DataSource dataSource() {
+        return getDataSourceProperty().initializeDataSourceBuilder().build();
     }
 
 }
