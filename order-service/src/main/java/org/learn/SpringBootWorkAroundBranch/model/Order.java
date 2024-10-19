@@ -1,5 +1,8 @@
 package org.learn.SpringBootWorkAroundBranch.model;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,8 +15,17 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class Order {
-    private long orderId;
+    @NotNull
+    @NotEmpty
     private List<String> products;
+
+    @NotNull
+    @NotEmpty
+    @NotBlank
     private String username;
+
+    @NotNull
+    @NotEmpty
+    @NotBlank
     private int payableAmount;
 }

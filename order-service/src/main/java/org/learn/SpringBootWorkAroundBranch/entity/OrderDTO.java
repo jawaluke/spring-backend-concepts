@@ -1,10 +1,8 @@
 package org.learn.SpringBootWorkAroundBranch.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.learn.SpringBootWorkAroundBranch.enums.OrderStatus;
 
 import java.util.List;
@@ -19,10 +17,12 @@ public class OrderDTO {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long orderId;
 
-    @Column(name = "products")
+    @Column(name = "products", columnDefinition = "jsonb")
+    @JsonFormat(shape = JsonFormat.Shape.ARRAY)
     private List<String> products;
 
     @Column(name = "status")
+    @Enumerated(value = EnumType.STRING)
     private OrderStatus orderStatus;
 
     @Column(name = "user")
