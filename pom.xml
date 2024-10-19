@@ -9,6 +9,10 @@
     <version>3.1.4</version>
     <relativePath></relativePath>
   </parent>
+  <packaging>pom</packaging>
+  <modules>
+    <module>order-service</module>
+  </modules>
 
   <properties>
     <maven.compiler.source>17</maven.compiler.source>
@@ -24,6 +28,10 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
     </dependency>
   </dependencies>
 
