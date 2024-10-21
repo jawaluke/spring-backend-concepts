@@ -15,6 +15,7 @@ public class OrderMapper {
         OrderDTO orderDTO = OrderDTO.builder()
                 .orderStatus(OrderStatus.PROGRESS)
                 .payableAmount(order.getPayableAmount())
+                .username(order.getUsername())
                 .products(order.getProducts()).build();
         Assert.notNull(orderDTO, "error in mapping order");
         return orderDTO;

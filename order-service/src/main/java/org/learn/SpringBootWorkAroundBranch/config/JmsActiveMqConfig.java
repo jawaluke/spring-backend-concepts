@@ -2,17 +2,23 @@ package org.learn.SpringBootWorkAroundBranch.config;
 
 import jakarta.jms.ConnectionFactory;
 import org.apache.activemq.ActiveMQConnectionFactory;
+import org.learn.SpringBootWorkAroundBranch.listener.JmsPaymentProcessListener;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.annotation.EnableJms;
 import org.springframework.jms.connection.CachingConnectionFactory;
 import org.springframework.jms.core.JmsTemplate;
+import org.springframework.jms.listener.DefaultMessageListenerContainer;
+
+import static org.learn.SpringBootWorkAroundBranch.util.OrderUtil.PAYMENT_QUEUE;
 
 @Configuration
 @EnableJms
 public class JmsActiveMqConfig {
 
-    private final String paymentQueueName = "PaymentProgressQueue";
+    @Autowired
+    private JmsPaymentProcessListener jmsPaymentProcessListener;
 
     @Bean
     public ConnectionFactory connectionFactory1() {
@@ -26,8 +32,18 @@ public class JmsActiveMqConfig {
     @Bean(name = "paymentjmstemplate")
     public JmsTemplate jmsTemplate1(ConnectionFactory connectionFactory) {
         JmsTemplate jmsTemplate = new JmsTemplate(connectionFactory);
-        jmsTemplate.setDefaultDestinationName(paymentQueueName);
+        jmsTemplate.setDefaultDestinationName(PAYMENT_QUEUE);
         return jmsTemplate;
+    }
+
+    @Bean
+    public DefaultMessageListenerContainer defaultMessageListenerContainer(ConnectionFactory connectionFactory) {
+        DefaultMessageListenerContainer defaultMessageListenerContainer = new DefaultMessageListenerContainer();
+        defaultMessageListenerContainer.setDestinationName(PAYMENT_QUEUE);
+        defaultMessageListenerContainer.setConnectionFactory(connectionFactory);
+        defaultMessageListenerContainer.setPubSubDomain(false);
+        defaultMessageListenerContainer.setMessageListener(jmsPaymentProcessListener);
+        return defaultMessageListenerContainer;
     }
 
 }

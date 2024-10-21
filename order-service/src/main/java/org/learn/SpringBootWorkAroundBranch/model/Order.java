@@ -25,7 +25,5 @@ public class Order {
     private String username;
 
     @NotNull
-    @NotEmpty
-    @NotBlank
     private int payableAmount;
 }

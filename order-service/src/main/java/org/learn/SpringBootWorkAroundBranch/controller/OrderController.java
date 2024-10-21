@@ -1,7 +1,10 @@
 package org.learn.SpringBootWorkAroundBranch.controller;
 
 import jakarta.validation.Valid;
+import org.learn.SpringBootWorkAroundBranch.entity.OrderDTO;
+import org.learn.SpringBootWorkAroundBranch.facade.OrderFacade;
 import org.learn.SpringBootWorkAroundBranch.model.Order;
+import org.learn.SpringBootWorkAroundBranch.service.JmsSenderOrderService;
 import org.learn.SpringBootWorkAroundBranch.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +16,13 @@ import org.springframework.web.bind.annotation.*;
 public class OrderController {
 
     private OrderService orderService;
+    private JmsSenderOrderService jmsSenderOrderService;
+    private OrderFacade orderFacade;
 
     @Autowired
-    public OrderController(OrderService orderService) {
+    public OrderController(JmsSenderOrderService jmsSenderOrderService, OrderFacade orderFacade, OrderService orderService) {
+        this.jmsSenderOrderService = jmsSenderOrderService;
+        this.orderFacade = orderFacade;
         this.orderService = orderService;
     }
 
@@ -31,11 +38,8 @@ public class OrderController {
         if(order==null) {
             return ResponseEntity.badRequest().build();
         }
-        orderService.createOrderAndSave(order);
-        // 2. update order in DB
-        // 3. publish request to inventory
-        // 4. listen up topic to mark the order completed or failed
-        return null;
+        orderFacade.processOrdertoPayment(order);
+        return ResponseEntity.ok("success");
     }
 
 }

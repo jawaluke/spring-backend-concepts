@@ -7,6 +7,7 @@ import org.learn.SpringBootWorkAroundBranch.model.Order;
 import org.learn.SpringBootWorkAroundBranch.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class OrderService {
@@ -21,8 +22,13 @@ public class OrderService {
         this.orderMapper = orderMapper;
     }
 
-    public void createOrderAndSave(@Valid Order order) {
-        OrderDTO orderDTO = orderMapper.toOrderDTO(order);
-        orderRepository.save(orderDTO);
+    @Transactional
+    public OrderDTO createAndSaveOrder(OrderDTO order) {
+        return orderRepository.save(order);
+    }
+
+
+    public OrderDTO getOrderByOrderId(long orderId) {
+        return orderRepository.getById(orderId);
     }
 }

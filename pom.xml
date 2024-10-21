@@ -12,6 +12,7 @@
   <packaging>pom</packaging>
   <modules>
     <module>order-service</module>
+      <module>payment-service</module>
   </modules>
 
   <properties>
