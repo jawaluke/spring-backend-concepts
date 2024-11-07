@@ -11,7 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
-@SpringBootApplication
+@SpringBootApplication(exclude = {})
 public class Main implements CommandLineRunner {
 
     @Autowired
