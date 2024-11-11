@@ -1,6 +1,8 @@
 package org.learn.SpringBootWorkAroundBranch.enums;
 
-public enum OrderStatus {
+import java.io.Serializable;
+
+public enum OrderStatus implements Serializable {
     PROGRESS,
     COMPLETED,
     FAILED

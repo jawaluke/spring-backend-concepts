@@ -11,6 +11,9 @@ import org.springframework.jms.connection.CachingConnectionFactory;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.listener.DefaultMessageListenerContainer;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import static org.learn.SpringBootWorkAroundBranch.util.OrderUtil.PAYMENT_QUEUE;
 
 @Configuration
@@ -26,6 +29,7 @@ public class JmsActiveMqConfig {
         connectionFactory.setBrokerURL("tcp://localhost:61616");
         connectionFactory.setUserName("admin");
         connectionFactory.setPassword("admin");
+        connectionFactory.setTrustedPackages(Arrays.asList("org.learn.SpringBootWorkAroundBranch.entity", "org.learn.SpringBootWorkAroundBranch.enums", "java.util"));
         return new CachingConnectionFactory(connectionFactory);
     }
 
