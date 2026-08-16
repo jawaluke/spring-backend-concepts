@@ -1,0 +1,93 @@
+.header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .header-icon {
+      margin-right: 12px;
+    }
+    .spacer {
+      flex: 1 1 auto;
+    }
+    .page-container {
+      padding: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-header {
+      margin-bottom: 32px;
+    }
+    .section-header h2 {
+      margin: 0;
+      font-size: 28px;
+      font-weight: 500;
+    }
+    .subtitle {
+      color: #666;
+      margin-top: 4px;
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+    }
+    .ride-card {
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border-radius: 12px;
+    }
+    .ride-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1) !important;
+    }
+    .ride-avatar {
+      background-color: #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      color: #555;
+    }
+    .status-badge.active {
+      color: #4caf50;
+      font-weight: 500;
+      font-size: 12px;
+    }
+    .card-content {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid #eee;
+    }
+    .destination-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .coords {
+      display: flex;
+      flex-direction: column;
+    }
+    .coords .label {
+      font-size: 12px;
+      color: #777;
+    }
+    .coords .value {
+      font-family: monospace;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 64px 24px;
+      background: #fafafa;
+      border-radius: 16px;
+      border: 2px dashed #e0e0e0;
+    }
+    .empty-icon {
+      font-size: 48px;
+      width: 48px;
+      height: 48px;
+      color: #bdbdbd;
+      margin-bottom: 16px;
+    }

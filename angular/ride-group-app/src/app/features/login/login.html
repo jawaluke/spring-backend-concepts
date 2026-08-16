@@ -1,0 +1,19 @@
+<div style="padding: 2rem; max-width: 400px; margin: auto;">
+      <h2>Sign In</h2>
+      <form (ngSubmit)="onSubmit()">
+        <div style="margin-bottom: 1rem;">
+          <label for="username">Username: </label>
+          <input 
+            type="text" 
+            id="username" 
+            name="username" 
+            [(ngModel)]="username" 
+            required 
+            style="width: 100%; padding: 0.5rem;"
+          />
+        </div>
+        <button type="submit" [disabled]="!username" style="padding: 0.5rem 1rem;">
+          Go to Profile
+        </button>
+      </form>
+    </div>
