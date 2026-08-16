@@ -24,7 +24,7 @@ public class RideGroupController {
 
     @PostMapping("/")
     public ResponseEntity createGroup(@RequestBody GroupRequest groupRequest) {
-        log.info("Request for creating a group named : {0}", groupRequest.getGroupName());
+        log.info("Request for creating a group named : {}", groupRequest.getGroupName());
         return ResponseEntity.accepted().body(rideGroupService.createRideGroup(groupRequest));
     }
 
@@ -37,6 +37,7 @@ public class RideGroupController {
     @PostMapping("/{groupId}/join")
     public ResponseEntity joinTheRideGroup(@RequestBody JoinRideGroup joinRideGroup,
                                            @PathVariable Long groupId) {
+        log.info("User Id {} Request for RideGroup join for Group {}", joinRideGroup.getUserId(), groupId);
         if(groupMemberService.isExists(groupId, joinRideGroup.getUserId())) {
             return ResponseEntity.badRequest().body("Already joined the group");
         }

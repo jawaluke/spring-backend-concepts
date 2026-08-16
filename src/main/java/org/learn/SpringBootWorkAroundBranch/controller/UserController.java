@@ -20,7 +20,7 @@ public class UserController {
 
     @PostMapping("/")
     public ResponseEntity createAppUser(@RequestBody UserRequest userRequest) {
-        log.info("Request for creating app user : {0}", userRequest.getUserName());
+        log.info("Request for creating app user : {}", userRequest.getUserName());
         return ResponseEntity.ok(appUserService.createUser(userRequest));
     }
 }
